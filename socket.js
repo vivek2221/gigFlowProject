@@ -4,11 +4,10 @@ import { ModelMessages, ModelSid } from './mongoose/mongooseValidationPlusModelC
 import 'dotenv/config'
 import cookie from 'cookie'
 import signature from 'cookie-signature'
+import express from 'express'
 const map = new Map()
-const httpServer = createServer((req, res) => {
-    res.writeHead(200);
-    res.end('Server is Online');
-})
+const app=express()
+const httpServer = createServer(app)
 const io = new Server(httpServer,{
     cors: {
         origin: process.env.FRONTEND_URL,
@@ -60,7 +59,8 @@ io.on('connection', (socket) => {
         }
     })
 })
-const PORT = process.env.PORT || 10000;
-httpServer.listen(PORT,() => {
-    console.log(`Server is running on http://${process.env.WEBSOCKETHOST}:${PORT}`)
-})
+export {
+    app,
+    httpServer,
+    io
+}
