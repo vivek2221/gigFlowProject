@@ -1,6 +1,6 @@
 import mongoose  from "mongoose";
 import 'dotenv/config'
-await mongoose.connect(process.env.mongooseConnectionString)
+await mongoose.connect(process.env.MONGOOSESTRINGURL)
 
 const loginSchema = new mongoose.Schema({
     name:{
