@@ -5,7 +5,13 @@ import {ModelLogin, ModelOtp } from '../mongoose/mongooseValidationPlusModelCrea
 
 
 const server = express.Router()
-
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.USEREMAIL,
+    pass: process.env.PASS 
+  }
+})
 server.put('/', async (req, res) => {
   const { email, name } = req.body
   const exists =await ModelLogin.findOne({name,email})
@@ -14,16 +20,6 @@ server.put('/', async (req, res) => {
   }
   const otp = Math.floor(1000 + Math.random() * 9000)
   try {
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true, 
-      auth: {
-         user: process.env.USEREMAIL,
-         pass: process.env.PASS
-  }
-    })
-
     await transporter.sendMail({
       from: process.env.EMAIL,
       to: email,
