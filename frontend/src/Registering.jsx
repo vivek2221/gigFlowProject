@@ -3,7 +3,9 @@ import CustomInput from "./CustomInput.jsx"
 import { useGSAP } from "@gsap/react"
 import gsap from 'gsap'
 import { Link, useNavigate } from "react-router-dom"
+import toast, { Toaster } from 'react-hot-toast'
 
+const notify = (otp) => toast(`your otp is ${otp}`)
 function SubLogin({Type}){
     let verifyContainer=useRef()
     const {contextSafe}=useGSAP({scope:verifyContainer})
@@ -107,13 +109,8 @@ function SubLogin({Type}){
         .then(data=>data.json())
         .then((data)=>{
             if(data.mess==='OTP sent'){
-                navigate('/')
+                notify(data.otp)
             }
-            if(data.mess==='go' && Type==='signIn'){
-                localStorage.setItem("name",data.name)
-                navigate('/home',{state:{name:data.name}})
-            }
-            
         })
     }
     const buttonVerifyOtp=(e)=>{
@@ -132,9 +129,6 @@ function SubLogin({Type}){
         })
         .then(data=>data.json())
         .then((data)=>{
-            if(data.mess==='OTP sent'){
-                navigate('/')
-            }
             if(data.mess==='go' && Type!=='signIn'){
               navigate('/')
             }
@@ -156,9 +150,6 @@ function SubLogin({Type}){
         })
         .then(data=>data.json())
         .then((data)=>{
-            if(data.mess==='OTP sent'){
-                navigate('/')
-            }
             if(data.mess==='go' && Type==='signIn'){
                 localStorage.setItem("name",data.name)
                 navigate('/home',{state:{name:data.name}})
@@ -168,6 +159,7 @@ function SubLogin({Type}){
     },[])
     return (
         <div ref={verifyContainer} id='mainDivLogin'>
+             <Toaster />
             <div id="forColorBlur">
                  <div id='loginBoxDiv'>
                 <div id="imageNearFormDiv">
@@ -194,7 +186,7 @@ function SubLogin({Type}){
                 <div id="verificationBoxDiv">
                     <div>Enter OTP</div>
                     <CustomInput inputHint='otp' classForDivs="otpDivInput" classN="otpInput" inputValue={values.otp} setValues={setValues} error={errors.otp}/>
-                    <button id="verifyButtonOtp" >verify</button>
+                    <button id="verifyButtonOtp" onClick={buttonVerifyOtp} >verify</button>
                 </div>
             </div>
         </div>
