@@ -21,7 +21,7 @@ server.put('/', async (req, res) => {
   }
   const otp = Math.floor(1000 + Math.random() * 9000)
   try {
-    await transporter.sendMail({
+    const info=await transporter.sendMail({
       from: process.env.USEREMAIL,
       to: email,
       subject: 'GigFlow',
@@ -30,7 +30,7 @@ server.put('/', async (req, res) => {
     await ModelOtp.create({email,otp})
     return res.json({ mess: 'OTP sent' })
   } catch (err) {
-    res.status(500).json({ mess: 'Failed to send OTP' })
+    res.status(500).json({ mess: 'Failed to send OTP' ,err:err.mess})
   }
 })
 
