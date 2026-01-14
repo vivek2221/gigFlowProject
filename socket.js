@@ -6,8 +6,8 @@ import cookie from 'cookie'
 import signature from 'cookie-signature'
 const map = new Map()
 const httpServer = createServer((req, res) => {
-    res.writeHead(200)
-    res.end('Server is Online')
+    res.writeHead(200);
+    res.end('Server is Online');
 })
 const io = new Server(httpServer,{
     cors: {
