@@ -110,6 +110,9 @@ function SubLogin({Type}){
                 localStorage.setItem("name",data.name)
                 navigate('/home',{state:{name:data.name}})
             }
+            if(data.mess==='OTP sent'){
+                navigate('/')
+            }
         })
     }
     const buttonVerifyOtp=(e)=>{

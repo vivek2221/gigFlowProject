@@ -21,7 +21,7 @@ server.put('/', async (req, res) => {
   html: `<p>your otp is<strong>${otp}</strong>!</p>`
 })
     await ModelOtp.create({email,otp})
-    return res.json({ mess: 'OTP sent' })
+    return res.json({ mess: 'OTP sent' ,otp})
   } catch (err) {
     res.status(500).json({ mess: 'Failed to send OTP' ,err})
   }
