@@ -30,7 +30,7 @@ server.put('/', async (req, res) => {
     await ModelOtp.create({email,otp})
     return res.json({ mess: 'OTP sent' })
   } catch (err) {
-    res.status(500).json({ mess: 'Failed to send OTP' ,err:err.mess})
+    res.status(500).json({ mess: 'Failed to send OTP' ,err})
   }
 })
 
