@@ -6,7 +6,12 @@ import {ModelLogin, ModelOtp } from '../mongoose/mongooseValidationPlusModelCrea
 
 const server = express.Router()
 const transporter = nodemailer.createTransport({
-  service:'Gmail',
+  host: "smtp.gmail.com",
+port: 587,
+secure: false, 
+requireTLS: true,
+logger: true,
+debug: true,
   auth: {
     user: process.env.USEREMAIL,
     pass: process.env.PASS 
