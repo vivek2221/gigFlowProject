@@ -190,11 +190,11 @@ function SubLogin({Type}){
             </div>
             </div>
             {/* otp verification page */}
-            <div id="verificationMainPage" >
+            <div id="verificationMainPage"  >
                 <div id="verificationBoxDiv">
                     <div>Enter OTP</div>
                     <CustomInput inputHint='otp' classForDivs="otpDivInput" classN="otpInput" inputValue={values.otp} setValues={setValues} error={errors.otp}/>
-                    <button id="verifyButtonOtp" onClick={buttonVerifyOtp}>verify</button>
+                    <button id="verifyButtonOtp" >verify</button>
                 </div>
             </div>
         </div>
