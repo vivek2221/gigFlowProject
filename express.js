@@ -36,6 +36,6 @@ app.get("*all",(req,res)=>{
     res.sendFile(path.resolve(dirPath,"./frontend/dist","index.html"))
 })
 }
-httpServer.listen(PORT,process.env.HOST_MAIN_SERVER,()=>{
-    console.log(`server started on port ${2000}`)
+httpServer.listen(PORT,'0.0.0.0',()=>{
+    console.log(`server started on port ${PORT}`)
 })
