@@ -14,7 +14,7 @@ server.put('/', async (req, res) => {
   }
   const otp = Math.floor(1000 + Math.random() * 9000)
   try {
-    resend.emails.send({
+   await resend.emails.send({
   from: 'onboarding@resend.dev',
   to: email,
   subject: 'GigFlow',
