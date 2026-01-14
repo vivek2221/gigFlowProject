@@ -106,13 +106,14 @@ function SubLogin({Type}){
         })
         .then(data=>data.json())
         .then((data)=>{
+            if(data.mess==='OTP sent'){
+                navigate('/')
+            }
             if(data.mess==='go' && Type==='signIn'){
                 localStorage.setItem("name",data.name)
                 navigate('/home',{state:{name:data.name}})
             }
-            if(data.mess==='OTP sent'){
-                navigate('/')
-            }
+            
         })
     }
     const buttonVerifyOtp=(e)=>{
@@ -131,6 +132,9 @@ function SubLogin({Type}){
         })
         .then(data=>data.json())
         .then((data)=>{
+            if(data.mess==='OTP sent'){
+                navigate('/')
+            }
             if(data.mess==='go' && Type!=='signIn'){
               navigate('/')
             }
@@ -152,6 +156,9 @@ function SubLogin({Type}){
         })
         .then(data=>data.json())
         .then((data)=>{
+            if(data.mess==='OTP sent'){
+                navigate('/')
+            }
             if(data.mess==='go' && Type==='signIn'){
                 localStorage.setItem("name",data.name)
                 navigate('/home',{state:{name:data.name}})
