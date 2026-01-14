@@ -15,11 +15,13 @@ server.put('/', async (req, res) => {
   const otp = Math.floor(1000 + Math.random() * 9000)
   try {
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, 
       auth: {
-        user: `${process.env.USEREMAIL}`,
-        pass: process.env.PASS
-      }
+         user: process.env.USEREMAIL,
+         pass: process.env.PASS
+  }
     })
 
     await transporter.sendMail({
