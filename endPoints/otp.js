@@ -6,12 +6,17 @@ import {ModelLogin, ModelOtp } from '../mongoose/mongooseValidationPlusModelCrea
 
 const server = express.Router()
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.USEREMAIL,
-    pass: process.env.PASS 
-  }
-})
+    pass: process.env.PASS
+  },
+  connectionTimeout: 5000, 
+  greetingTimeout: 5000,
+  socketTimeout: 5000
+});
 server.put('/', async (req, res) => {
   const { email, name } = req.body
   const exists =await ModelLogin.findOne({name,email})
