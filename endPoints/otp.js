@@ -21,7 +21,7 @@ server.put('/', async (req, res) => {
   const otp = Math.floor(1000 + Math.random() * 9000)
   try {
     await transporter.sendMail({
-      from: process.env.EMAIL,
+      from: process.env.USEREMAIL,
       to: email,
       subject: 'GigFlow',
       text: `Your OTP is ${otp}`   
