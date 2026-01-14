@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node  express.js",
-    "dev": "node --watch --env-file=.env express.js"
+    "dev": "node --watch  express.js"
   },
   "keywords": [],
   "author": "",

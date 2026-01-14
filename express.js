@@ -4,6 +4,7 @@ import gigs from './endPoints/gigs.js'
 import bids from './endPoints/bids.js'
 import otp from './endPoints/otp.js'
 import {auth} from './middlewares/authIn.js'
+import 'dotenv/config'
 import Auth from './endPoints/auth.js'
 import cookieParser from "cookie-parser";
 import { ModelMessages, ModelSid } from "./mongoose/mongooseValidationPlusModelCreation.js";

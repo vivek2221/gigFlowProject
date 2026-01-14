@@ -1,4 +1,5 @@
 import express from 'express'
+import 'dotenv/config'
 import {ModelLogin, ModelOtp, ModelSid} from '../mongoose/mongooseValidationPlusModelCreation.js'
 const sameSite=process.env.SAMESITE
 const secure=process.env.SECURE==='true'

@@ -1,4 +1,5 @@
 import { ModelSid } from "../mongoose/mongooseValidationPlusModelCreation.js"
+import 'dotenv/config'
 
 export const auth = async(req,res,next)=>{
     

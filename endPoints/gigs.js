@@ -2,6 +2,7 @@ import express from "express"
 import { ModelBid, ModelGig, ModelLogin, ModelSid } from "../mongoose/mongooseValidationPlusModelCreation.js"
 import jwt from 'jsonwebtoken'
 import mongoose from "mongoose"
+import 'dotenv/config'
 
 const server = express.Router()
 server.get('/',async(req,res)=>{

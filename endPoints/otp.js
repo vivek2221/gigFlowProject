@@ -1,5 +1,6 @@
 import express from 'express'
 import nodemailer from 'nodemailer'
+import 'dotenv/config'
 import {ModelLogin, ModelOtp } from '../mongoose/mongooseValidationPlusModelCreation.js'
 
 
