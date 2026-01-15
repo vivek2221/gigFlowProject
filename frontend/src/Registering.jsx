@@ -5,7 +5,7 @@ import gsap from 'gsap'
 import { Link, useNavigate } from "react-router-dom"
 import toast, { Toaster } from 'react-hot-toast'
 
-const notify = (otp) => toast(`your otp is ${otp}`)
+const notify = (mess) => toast(mess)
 function SubLogin({Type}){
     let verifyContainer=useRef()
     const {contextSafe}=useGSAP({scope:verifyContainer})
@@ -108,7 +108,7 @@ function SubLogin({Type}){
         })
         .then(data=>data.json())
         .then((data)=>{
-             if(data.mess==='OTP sent' || data.mess==='User already exists' || data.mess==='Failed to send OTP'){
+             if(data.mess==='OTP sent' || data.mess==='User already exists' || data.mess==='Failed to send OTP' || data.mess!=='go'){
                 notify(data.mess)
             }
             if(data.mess==='go' && Type==='signIn'){
