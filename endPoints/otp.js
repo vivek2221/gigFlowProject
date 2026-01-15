@@ -22,7 +22,7 @@ message.sender = { name: "gigFlow", email: process.env.USEREMAIL };
 message.to = [{ email, name }];
     emailAPI.sendTransacEmail(message)
     await ModelOtp.create({email,otp})
-    return res.json({ mess: 'OTP sent' ,otp})
+    return res.json({ mess: 'OTP sent' })
   } catch (err) {
     res.status(500).json({ mess: 'Failed to send OTP' ,err})
   }

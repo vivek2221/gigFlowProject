@@ -108,8 +108,8 @@ function SubLogin({Type}){
         })
         .then(data=>data.json())
         .then((data)=>{
-             if(data.mess==='OTP sent'){
-                notify(data.otp)
+             if(data.mess==='OTP sent' || data.mess==='User already exists' || data.mess==='Failed to send OTP'){
+                notify(data.mess)
             }
             if(data.mess==='go' && Type==='signIn'){
                 localStorage.setItem("name",data.name)
@@ -135,6 +135,9 @@ function SubLogin({Type}){
         .then((data)=>{
             if(data.mess==='go' && Type!=='signIn'){
               navigate('/')
+            }
+            if(data.mess!=='go'){
+                notify(data.mess)
             }
         })
         
