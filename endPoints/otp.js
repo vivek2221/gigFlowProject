@@ -2,9 +2,10 @@ import express from 'express'
 import nodemailer from 'nodemailer'
 import 'dotenv/config'
 import {ModelLogin, ModelOtp } from '../mongoose/mongooseValidationPlusModelCreation.js'
-import { Resend } from 'resend'
+import { TransactionalEmailsApi, SendSmtpEmail } from "@getbrevo/brevo"
 
-const resend = new Resend(process.env.API_KEY)
+let emailAPI = new TransactionalEmailsApi();
+emailAPI.authentications.apiKey.apiKey = process.env.API_KEY
 const server = express.Router()
 server.put('/', async (req, res) => {
   const { email, name } = req.body
@@ -14,12 +15,12 @@ server.put('/', async (req, res) => {
   }
   const otp = Math.floor(1000 + Math.random() * 9000)
   try {
-   await resend.emails.send({
-  from: process.env.USEREMAIL,
-  to: email,
-  subject: 'GigFlow',
-  html: `<p>your otp is<strong>${otp}</strong>!</p>`
-})
+    let message = new SendSmtpEmail();
+message.subject = "gigFlow";
+message.textContent = `your otp is ${otp}`;
+message.sender = { name: "gigFlow", email: process.env.USEREMAIL };
+message.to = [{ email, name }];
+    emailAPI.sendTransacEmail(message)
     await ModelOtp.create({email,otp})
     return res.json({ mess: 'OTP sent' ,otp})
   } catch (err) {
